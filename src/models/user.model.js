@@ -39,7 +39,7 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Video'
     }],
-    refeshToken: {
+    refreshToken: {
         type: String
     }
 }, { timestamps: true });
@@ -53,7 +53,7 @@ userSchema.pre('save', async function (next) {
 });
 
 // method to compare passwords for authentication
-userSchema.methods.isPasswordCorrect = async function (password) {
+userSchema.methods.isPasswordValid = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
 
